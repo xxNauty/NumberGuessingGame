@@ -1,6 +1,9 @@
 <?php
 
 $number = rand(1, 100);
+
+//echo $number."\n";
+
 $maxAttempts = 0;
 
 $correctLevel = false;
@@ -11,15 +14,18 @@ do {
 
     switch ($level){
         case 'Niski':
+        case '1':
             $maxAttempts = 10;
             $correctLevel = true;
             break;
         case 'Średni':
-            $maxAttempts = 5;
+        case '2':
+        $maxAttempts = 5;
             $correctLevel = true;
             break;
         case 'Wysoki':
-            $maxAttempts = 3;
+        case '3':
+        $maxAttempts = 3;
             $correctLevel = true;
             break;
         default:
@@ -33,12 +39,19 @@ for($i = 0; $i < $maxAttempts; $i++){
 
     if($attempt == $number){
         echo(sprintf("Brawo, zgadłeś!\nUdało ci się to za %d razem\n", $i + 1));
-        break;
+        return;
     } else {
         if($attempt > $number){
-            echo("Za dużo!\n");
+            echo("Za dużo!");
         } else {
-            echo("Za mało!\n");
+            echo("Za mało!");
+        }
+
+        if(abs($attempt - $number) <= 5){
+            echo(" Ale jesteś blisko! \n");
+        }
+        else{
+            echo("\n");
         }
     }
 }
